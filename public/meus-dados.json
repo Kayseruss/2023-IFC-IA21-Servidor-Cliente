@@ -1,0 +1,37 @@
+[   
+  {
+    "nome": "Marcos",
+    "data-nascimento": [2010,9,12],
+    "usa-oculos": false
+  },
+  {
+    "nome": "Julia",
+    "data-nascimento": [1988,1,15],
+    "usa-oculos": true
+  },
+  {
+    "nome": "Joao",
+    "data-nascimento": [1958,8,1],
+    "usa-oculos": false
+  },
+  {
+    "nome": "Pedro",
+    "data-nascimento": [2000,10,10],
+    "usa-oculos": true
+  },
+  {
+    "nome": "Lucas",
+    "data-nascimento": [2019,12,6],
+    "usa-oculos": false
+  },
+  {
+    "nome": "Carlos",
+    "data-nascimento": [1999,9,7],
+    "usa-oculos": true
+  },
+  {
+    "nome": "Daniel",
+    "data-nascimento": [1978,8,12],
+    "usa-oculos": false
+  }
+]

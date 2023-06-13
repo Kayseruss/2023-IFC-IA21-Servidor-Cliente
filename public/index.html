@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste</title>
+</head>
+<body>
+  <script>
+    async function main() {
+      const request = await fetch("meus-dados.json")
+      const data = await request.json()
+      const year = new Date().getFullYear()
+
+      data.forEach(pessoa => {
+        document.body.innerHTML += `<button>
+            ${pessoa.nome}, 
+            ${year - pessoa["data-nascimento"][0]}, 
+            ${pessoa["usa-oculos"] ? "Usa Óculos" : ""}
+          </button>` 
+      })
+    }
+    main()
+  </script>
+</body>
+</html>
