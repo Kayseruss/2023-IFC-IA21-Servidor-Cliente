@@ -1,0 +1,9 @@
+PUT https://kayseruss-cuddly-waddle-49jp96wrg9gf5q65-3000.preview.app.github.dev/movies HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Castelo Animado",
+  "source": "http://alksdfjlsadfjlskad.com/akudhaskduas.mp4",
+  "description": "Um filme que um bixinho de fogo muito sim[pát]icpo",
+  "thumb": "http://alksdfjlsadfjlskad.com/akudhaskduas.jpg"
+}
