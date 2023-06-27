@@ -1,25 +1,70 @@
 <!DOCTYPE html>
-<html lang="PT-br">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Teste</title>
 </head>
-<body>
-  <script>
-    async function main() {
-      const request = await fetch("meus-dados.json")
-      const data = await request.json()
-      const year = new Date().getFullYear()
 
-      data.forEach(pessoa => {
-        document.body.innerHTML += `<button>
-            ${pessoa.nome}, 
-            ${year - pessoa["data-nascimento"][0]}, 
-            ${pessoa["usa-oculos"] ? "Usa Óculos" : ""}
-          </button>` 
-      })
+<body>
+  <form>
+    <div>
+      <label for="title">title</label>
+      <input name="title" id="title">
+    </div>
+    <div>
+      <label for="source">source</label>
+      <input name="source" id="source">
+    </div>
+    <div>
+      <label for="description">description</label>
+      <input name="description" id="description">
+    </div>
+    <div>
+      <label for="thumb">thumb</label>
+      <input name="thumb" id="thumb">
+    </div>
+    <div>
+      <button>Cadastrar</button>
+    </div>
+  </form>
+
+  <ul class="movie-list">
+    <!--  -->
+  </ul>
+
+  <script>
+    const domMovieList = document.querySelector("ul.movie-list")
+    
+    async function listarTodosOsFilmes() {
+      const response = await fetch("/movies")
+      const movies = await response.json()
+      movies.forEach(movie => {
+        domMovieList.innerHTML += `  
+          <li>
+            <strong>title</strong>
+            ${movie.title}
+            <ul>
+              <li>
+                <strong>source</strong>
+                ${movie.source}
+              </li>
+              <li>
+                <strong>thumb</strong>
+                ${movie.thumb}
+              </li>
+              <li>
+                <strong>description</strong>
+                ${movie.description}
+              </li>
+            </ul>
+          </li>
+        `
+      });
     }
-    main()
+
+    listarTodosOsFilmes()
   </script>
 </body>
+
 </html>
