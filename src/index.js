@@ -25,7 +25,7 @@ app.get("/movies", async (req, res) => {
     res.json(result)
     return
   }
-  const result = await db.all(`SELECT * FROM movies`)
+  const result = await db.all(`SELECT * FROM movies ORDER BY id DESC`)
   res.json(result)
 })
 
@@ -69,4 +69,6 @@ app.delete("/movies", async (req, res) => {
   res.json(result)
 })
 
-app.listen(3000, () => console.log("Servidor rodando!"))
+
+
+app.listen(4000, () => console.log("Servidor rodando!"))

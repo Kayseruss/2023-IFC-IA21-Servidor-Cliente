@@ -4,10 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Teste</title>
+  <style>
+    ul, li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul.movie-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    ul.movie-list > li {
+      border: 1px solid #000000;
+      margin: 1rem;
+      cursor: pointer;
+    }
+    
+    ul.movie-list > li > div {
+      background-color: #000000;
+      padding: .25rem .5rem;
+      color: #FFFFFF;
+    }
+
+    ul.movie-list > li > ul {
+      padding: .5rem;
+      transition: .3s;
+    }
+
+    ul.movie-list > li > ul:hover {
+      background-color: #00000033;
+    }
+    </style>
 </head>
 
 <body>
-  <form>
+  <form class="form-alterar">
     <div>
       <label for="title">title</label>
       <input name="title" id="title">
@@ -35,27 +68,33 @@
 
   <script>
     const domMovieList = document.querySelector("ul.movie-list")
-    
+    const domFormAlterar = document.querySelector("form.form-alterar")
+
+    // ---✀------------------------------------------------------------------
+
     async function listarTodosOsFilmes() {
       const response = await fetch("/movies")
       const movies = await response.json()
+      domMovieList.innerHTML = ""
       movies.forEach(movie => {
         domMovieList.innerHTML += `  
           <li>
-            <strong>title</strong>
-            ${movie.title}
+            <div>
+              <strong>title:</strong> ${movie.title}
+            </div>
             <ul>
               <li>
-                <strong>source</strong>
-                ${movie.source}
+                <strong>source:</strong> ${movie.source}
               </li>
               <li>
-                <strong>thumb</strong>
-                ${movie.thumb}
+                <strong>thumb:</strong> ${movie.thumb}
               </li>
               <li>
-                <strong>description</strong>
-                ${movie.description}
+                <strong>description:</strong> ${movie.description}
+              </li>
+              <li>
+                <button class= "excluir" data-id="${movie.id}">excluir</button>
+                <button class= "excluir" data-id="${movie.id}">alterar</button>
               </li>
             </ul>
           </li>
@@ -64,6 +103,33 @@
     }
 
     listarTodosOsFilmes()
+
+    // ---✀------------------------------------------------------------------
+    domMovieList.addEventListener("click", async ev => {
+      if(ev.target.classList.contains("excluir")) {
+        const response = await fetch(`/movies?id=${ev.target.dataset.id}`, { method: "DELETE" })
+        const movies = await response.json()
+        listarTodosOsFilmes()
+        return
+      }
+
+      if(ev.target.classList.contains("alter")) {
+        const response = await fetch(`/movies?id=${ev.target.dataset.id}`, { 
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: "11111111111",
+            source: "11111111111",
+            description: "11111111111",
+            thumb: "11111111111",
+          })
+        })
+        const movies = await response.json()
+        listarTodosOsFilmes()
+        return
+      }
+    })
+
   </script>
 </body>
 
